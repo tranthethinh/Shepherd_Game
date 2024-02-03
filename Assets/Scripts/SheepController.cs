@@ -70,7 +70,6 @@ public class SheepController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
     
-    // Update is called once per frame
     public Vector2Int start;
     public Vector2Int cellPosScare;
     public Vector3Int currentTarget;

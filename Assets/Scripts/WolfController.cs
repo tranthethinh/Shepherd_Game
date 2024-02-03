@@ -93,7 +93,7 @@ public class WolfController : MonoBehaviour
                 targetSheep = _targetSheep;
                 if (targetSheep != null)
                 {
-                    SheepController sheepEat = targetSheep.GetComponent<SheepController>();
+                    Sheep sheepEat = targetSheep.GetComponent<Sheep>();
                     if (sheepEat.isRunToGroup && canEat)
                     {
                         Vector3Int SheepCellPos = tilemap.WorldToCell(sheepEat.transform.position);
@@ -163,7 +163,7 @@ public class WolfController : MonoBehaviour
             }
 
             // Check if the sheep has reached the current target point
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            if (Vector3.Distance(transform.position, targetPosition) < 0.4f)
             {
                 // Remove the reached point from the path
                 _roadPath.RemoveAt(0);
@@ -299,6 +299,10 @@ public class WolfController : MonoBehaviour
     }
     public void CreateRoadPath(Vector2Int cellPosScare)
     {
+        if (roadPath != null && roadPath.Count > 0)
+        {
+            roadPath.Clear();
+        }
         roadPath = astar.CreatePath(grid, start, cellPosScare, 179f, 1000);
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -310,7 +314,7 @@ public class WolfController : MonoBehaviour
             {
                 
                 //SheepController sheep = collision.gameObject.GetComponent<SheepController>();
-                if (collision.gameObject.GetComponent<SheepController>().isRunToGroup)
+                if (collision.gameObject.GetComponent<Sheep>().isRunToGroup)
                 {
                     
                     listSheepAround.Remove(collision.transform);

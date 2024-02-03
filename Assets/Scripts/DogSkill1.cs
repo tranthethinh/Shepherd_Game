@@ -49,8 +49,8 @@ public class DogSkill1 : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Sheep")){
-                var controller = collider.GetComponent<SheepController>();
-                if (controller != null)
+                var controller = collider.GetComponent<Sheep>();
+                if (controller != null&&controller.canScare)
                 {
 
                     controller.CreateRoadPath(_cellPos);

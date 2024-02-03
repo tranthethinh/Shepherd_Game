@@ -184,5 +184,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCausingFlee: 1
-  tilemap: {fileID: 0}
   blood: {fileID: 4136305714840272378, guid: 9b66180c736522042a53240d2b3eb70e, type: 3}
