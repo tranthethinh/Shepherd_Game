@@ -16,6 +16,8 @@ TagManager:
   - Map6
   - Map7
   - Map8
+  - SurvivalMap
+  - Gun
   layers:
   - Default
   - TransparentFX

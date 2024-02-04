@@ -127974,6 +127974,11 @@ MonoBehaviour:
   difficultyLevel: 0
   levelData: {fileID: 11400000, guid: e0073c42379f3974394a18f7c2c35898, type: 2}
   sheepPrefab: {fileID: 3084845920375523645, guid: 3845c5cf474cdd54ebdd18b68274dcf0, type: 3}
+  sheepList:
+  - {fileID: 6027241103091596060, guid: 496f9d07df9b39e4793472fe84099d33, type: 3}
+  - {fileID: 1274746929291790849, guid: f6aa0868298c5ae4098ac39c2a9b4eb7, type: 3}
+  - {fileID: 2439960223526695455, guid: 0763a56affe0c344f86fee280b736c93, type: 3}
+  - {fileID: 1536646050116283096, guid: bc3fadaaba0407c4d904225992f886ad, type: 3}
   wolfPrefab: {fileID: 8857944607663756007, guid: 2e47ec8663b27934dae5691fe3a63201, type: 3}
   dogPrefab: {fileID: 2828638059037468125, guid: a79856adb4676d849ad58269e19fee32, type: 3}
   dogPos: {fileID: 223601812}

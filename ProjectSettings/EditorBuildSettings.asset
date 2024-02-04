@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map5.unity
     guid: 509cf028dd5071040b51dad158926312
+  - enabled: 1
+    path: Assets/Scenes/SurvivalMap.unity
+    guid: f13057d69bcf43347bcee44e0d69e115
   m_configObjects: {}

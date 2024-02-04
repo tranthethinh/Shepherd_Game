@@ -26,7 +26,7 @@ public class AStar
     }
     public List<Spot> CreatePath(Vector3Int[,] grid, Vector2Int _start, Vector2Int target, float _distance, int length)
     {                                       // target is position that need to run away
-        Spot spotEnd = null;
+        Spot spotEnd;
         Spot spotStart = null;
         var columns = Spots.GetUpperBound(0) + 1;
         var rows = Spots.GetUpperBound(1) + 1;
@@ -53,8 +53,12 @@ public class AStar
         
         List<Spot> OpenSet = new List<Spot>();//contains nodes that are candidates for exploration
         List<Spot> ClosedSet = new List<Spot>();//contains nodes that have already been explored
-        spotStart.G = 0;
-        spotStart.H = -CalculateHValue(spotStart, target);
+        if(spotStart != null)
+        {
+            spotStart.G = 0;
+            spotStart.H = -CalculateHValue(spotStart, target);
+        }
+        
         OpenSet.Add(spotStart);//Put the starting node on the open list
 
         spotEnd = null;

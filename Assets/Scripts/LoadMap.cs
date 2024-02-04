@@ -14,7 +14,7 @@ public class LoadMap : MonoBehaviour
     private bool canLoadMap = false;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Map1")|| other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5") )
+        if (other.CompareTag("Map1")|| other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5") || other.CompareTag("SurvivalMap"))
         {
             sceneName = other.tag;
             if (chooseLevel != null)
@@ -27,7 +27,7 @@ public class LoadMap : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Map1") || other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5"))
+        if (other.CompareTag("Map1") || other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5") || other.CompareTag("SurvivalMap"))
         {
             
             if (chooseLevel != null)

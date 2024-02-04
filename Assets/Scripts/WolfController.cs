@@ -252,6 +252,7 @@ public class WolfController : MonoBehaviour
 
         foreach (Transform obj in listAround)
         {
+            if(obj ==null) continue;
             float distance = Vector2.Distance(transform.position, obj.position);
             if (distance < closestDistance)
             {

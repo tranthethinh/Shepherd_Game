@@ -205,6 +205,11 @@ public class Sheep : MonoBehaviour
     }
     void SetSheepAroundAsFollowers(Vector2Int cellPosScare)
     {
+        if (astar == null || grid == null)
+        {
+            Debug.LogError("Astar or grid is not initialized!");
+            return;
+        }
         foreach (Transform sheepTransform in listSheepAround)
         {
             Sheep sheepController = sheepTransform.GetComponent<Sheep>();
@@ -328,6 +333,11 @@ public class Sheep : MonoBehaviour
     }
     public void CreateRoadPath(Vector2Int cellPosScare)
     {
+        if (astar == null || grid == null)
+        {
+            Debug.LogError("Astar or grid is not initialized!");
+            return;
+        }
         if (roadPath != null && roadPath.Count > 0)
         {
             roadPath.Clear();

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SheepBlack : Sheep
 {
-    private bool canHit = false;
+    //private bool canHit = false;
     private Transform scarePos;
     protected override void Update()
     {
@@ -34,7 +34,7 @@ public class SheepBlack : Sheep
                 else
                 {
                     runSpeed = 4;
-                    canHit = true;
+                    //canHit = true;
                     roadPath = astar.CreatePath(grid, start, cellPosScare, 1000);
                 }
             }
