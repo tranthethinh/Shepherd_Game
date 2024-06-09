@@ -76,10 +76,15 @@ public class DogSkill1 : MonoBehaviour
     public void PlaySound()
     {
         // Set the volume based on the AudioManager's sheepVolume
-        audioSource.volume = AudioManager.instance.sheepVolume;
+        if (AudioManager.instance)
+        {
+            audioSource.volume = AudioManager.instance.sheepVolume;
+        }
 
-        // Your logic to play sheep sounds
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
     void DisableCircle()
     {

@@ -34,7 +34,7 @@ public class GameManagerS : MonoBehaviour
     {
         numSheepDied++;
         UpdateText();
-        if (numSheepSaved > difficultyLevel)
+        if (numSheepDied > difficultyLevel)
         {
             winLoseText.text = "Lose";
             numWinLoseText.text = "Die: " + numSheepDied;

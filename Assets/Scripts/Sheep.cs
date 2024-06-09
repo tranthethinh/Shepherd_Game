@@ -326,10 +326,15 @@ public class Sheep : MonoBehaviour
     public void PlaySheepSound()
     {
         // Set the volume based on the AudioManager's sheepVolume
-        audioSource.volume = AudioManager.instance.sheepVolume;
-
-        // Your logic to play sheep sounds
-        audioSource.Play();
+        if (AudioManager.instance != null)
+        {
+            audioSource.volume = AudioManager.instance.sheepVolume;
+        }
+        if(audioSource != null)
+        {
+            audioSource.Play();
+        }
+        
     }
     public void CreateRoadPath(Vector2Int cellPosScare)
     {

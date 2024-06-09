@@ -18,6 +18,11 @@ TagManager:
   - Map8
   - SurvivalMap
   - Gun
+  - Lock1
+  - Lock2
+  - Lock3
+  - Lock4
+  - Lock5
   layers:
   - Default
   - TransparentFX

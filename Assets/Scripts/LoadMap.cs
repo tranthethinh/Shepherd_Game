@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class LoadMap : MonoBehaviour
 {
@@ -10,11 +11,23 @@ public class LoadMap : MonoBehaviour
     public int currentLevel = 1;
     public GameObject chooseLevel;
     public TMP_Text textLevel;
+    public GameObject panelStatus;
+    private SheepfoldStatus sheepfoldStatus;
     private string sceneName;
     private bool canLoadMap = false;
+    string[] mapTags = { "Map1", "Map2", "Map3", "Map4", "Map5", "SurvivalMap" };
+    string[] lockTags = { "Lock1", "Lock2", "Lock3", "Lock4", "Lock5" };
+    int tagIndexMap;
+    int tagIndexLock;
+    private void Start()
+    {
+        sheepfoldStatus = panelStatus.GetComponent<SheepfoldStatus>();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Map1")|| other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5") || other.CompareTag("SurvivalMap"))
+       
+         tagIndexMap = Array.IndexOf(mapTags, other.tag);
+        if (tagIndexMap != -1)  
         {
             sceneName = other.tag;
             if (chooseLevel != null)
@@ -22,12 +35,28 @@ public class LoadMap : MonoBehaviour
                 chooseLevel.SetActive(true);
             }
             canLoadMap = true;
+            
+        }
+
+        tagIndexLock = Array.IndexOf(lockTags, other.tag);
+        if (tagIndexLock != -1)
+        {
+            if (panelStatus != null)
+            {
+                int count = DataManager.GetSheepCount(tagIndexLock+1);
+                float value = (float)DataManager.GetSheepCountTask(tagIndexLock+1) / count;
+                sheepfoldStatus.SetTextSheepfold(tagIndexLock + 1);
+                sheepfoldStatus.SetTextCount(count);
+                sheepfoldStatus.SetSliderValue(value);
+                panelStatus.SetActive(true);
+            }
+
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Map1") || other.CompareTag("Map2") || other.CompareTag("Map3") || other.CompareTag("Map4") || other.CompareTag("Map5") || other.CompareTag("SurvivalMap"))
+        if (Array.Exists(mapTags, tag => tag == other.tag))
         {
             
             if (chooseLevel != null)
@@ -37,6 +66,14 @@ public class LoadMap : MonoBehaviour
             currentLevel = 1;
         }
         canLoadMap= false;
+        if (Array.Exists(lockTags, tag => tag == other.tag))
+        {
+
+            if (panelStatus != null)
+            {
+                panelStatus.SetActive(false);
+            }
+        }
     }
     
     void Update()
@@ -54,7 +91,8 @@ public class LoadMap : MonoBehaviour
     public void LoadMapWithLevel(int difficultyLevel)
     {
         // Save the difficulty level to PlayerPrefs
-        PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
+       // PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
+       DataManager.DifficultyLevel = difficultyLevel;
         PlayerPrefs.Save();
 
         // Load Scene2
@@ -62,7 +100,16 @@ public class LoadMap : MonoBehaviour
     }
     public void AddLevel(int level)
     {
+        int i = DataManager.GetSheepCount(tagIndexMap+1);
         currentLevel += level;
+        DataManager.SheepInNewMap = i;
+        if (currentLevel > i/4)
+        {
+            
+            currentLevel = i/4;
+            textLevel.text = currentLevel + "(All)";
+            return;
+        }
         textLevel.text = currentLevel.ToString();
     }
 }
